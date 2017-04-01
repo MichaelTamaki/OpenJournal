@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from journal.views import JournalView
+from journal.views import journal_write, journal_overview
 
 urlpatterns = [
-	url(r'^$', JournalView.as_view()),
+	url(r'^$', journal_write),
+	url(r'^view/', journal_overview),
     url(r'^admin/', admin.site.urls),
 ]

@@ -1,8 +1,51 @@
-from django.test import LiveServerTestCase
+from django.test import LiveServerTestCase, TestCase
 from selenium import webdriver
+from .models import JournalEntry, JournalForm
+import datetime
 
 # Create your tests here.
 class HeaderTestCase(LiveServerTestCase):
 	def setUp(self):
-		driver = webdriver.Chrome()
-		driver.get()
+		self.driver = webdriver.Chrome()
+		super(HeaderTestCase, self).setUp()
+
+	def tearDown(self):
+		self.driver.quit()
+		super(HeaderTestCase, self).tearDown()
+
+	def test_initial_login(self):
+		self.driver.get('http://127.0.0.1:8000/')
+		header = self.driver.find_element_by_tag_name('h1').text
+		self.assertEqual(header, 'Open Journal', 'header = %s' % header)
+
+class JournalEntryModelTestCase(TestCase):
+	def test_create_delete(self):
+		title = 'Raindrop'
+		pub_date = datetime.datetime(2017, 4, 1, 10, 41)
+		content = 'Droptop'
+		entry = JournalEntry(title=title, pub_date=pub_date, content=content)
+		self.assertEqual(entry.title, title)
+		self.assertEqual(entry.pub_date, pub_date)
+		self.assertEqual(entry.content, content)
+
+	def test_journal_valid_form_entry(self):
+		form = JournalForm({
+			'title': 'Title!',
+			'pub_date': datetime.datetime(2017, 4, 1),
+			'content': 'Happy April Fools Day!',
+		})
+		self.assertTrue(form.is_valid())
+		entry = form.save()
+		self.assertEqual(entry.title, 'Title!')
+		date = datetime.datetime(2017, 4, 1)
+		self.assertEqual(entry.pub_date.year, date.year)
+		self.assertEqual(entry.content, 'Happy April Fools Day!')
+
+	def test_journal_invalid_form_entry(self):
+		form = JournalForm({
+			'title': 'Invalid!',
+			'pub_date': datetime.datetime(2017, 4, 1),
+			'content': '',
+		})
+		self.assertFalse(form.is_valid())
+		self.assertEqual(len(form.errors), 1)
