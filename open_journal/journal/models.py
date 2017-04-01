@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms import ModelForm, SelectDateWidget
+from django.forms import ModelForm, SelectDateWidget, Textarea
 import datetime
 
 # Create your models here.
@@ -17,9 +17,7 @@ class JournalForm(ModelForm):
 			'pub_date': 'Time',
 			'content': 'Content',
 		}
-		help_texts = {
-			'content': 'Write your journal entry here!',
-		}
 		widgets = {
-			'pub_date': SelectDateWidget(years=range(2015, datetime.datetime.now().year))
+			'pub_date': SelectDateWidget(years=range(2015, datetime.datetime.now().year + 1)),
+			'content': Textarea(attrs={'placeholder': 'Type your journal entry here!'})
 		}
