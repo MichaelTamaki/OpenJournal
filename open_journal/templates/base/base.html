@@ -5,7 +5,12 @@
     <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{% static 'journal/style.css' %}" />
 	<style>
-		.social-icns { width: 200px; display: block; margin-right: auto; margin-left: auto;}
+		.facebook {
+			background-color: #3b5998;
+			color: white;
+			padding: 10px;
+			text-decoration: none;
+		}
 	</style>
 </head>
 <body>
@@ -18,8 +23,8 @@
 		{% block content %}
 		{% endblock %}
 	{% else %}
-		<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
-			<img class='social-icns' src='/static/login-with-fb.png'>
+		<a class="facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+			Log in with Facebook
 		</a>
 	{% endif %}
 </body>

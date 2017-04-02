@@ -1,6 +1,10 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-	<h2>{{ entry.title }} <small>{{ entry.pub_date }}</small></h2>
-	<p>{{ entry.content }}</p>
+	{% if isWriter %}
+		<h2>{{ entry.title }} <small>{{ entry.pub_date }}</small></h2>
+		<p>{{ entry.content }}</p>
+	{% else %}
+		<p>You do not have access to this journal entry.</p>
+	{% endif %}
 {% endblock %}

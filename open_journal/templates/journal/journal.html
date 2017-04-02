@@ -13,7 +13,7 @@
 		<h2>Journal Entries</h2>
 		<ol>
 			{% for entry in journal %}
-				<li><a href="{% url 'detail' entry.pk %}">{{ entry.title }}</a><small>{{ entry.pub_date }}</small></li>
+				<li><a href="{% url 'detail' entry.pk %}">{{ entry.title }}</a> <small>{{ entry.pub_date }}</small> by {{ entry.writer.first_name }}</li>
 			{% endfor %}
 		</ol>
 	{% endif %}

@@ -11,7 +11,9 @@ def journal_write(request):
 	else:
 		form = JournalForm(request.POST)
 		if form.is_valid():
-			model_instance = form.save()
+			model_instance = form.save(commit=False)
+			model_instance.writer = request.user
+			model_instance.save()
 			form = JournalForm()
 			complete = True
 	journal = JournalEntry.objects.all().order_by('-pub_date', 'title')
@@ -19,4 +21,5 @@ def journal_write(request):
 
 def journal_detail(request, entry_id):
 	entry = get_object_or_404(JournalEntry, pk=entry_id)
-	return render(request, 'journal/detail.html', {'entry': entry})
+	is_writer = entry.writer == request.user
+	return render(request, 'journal/detail.html', {'entry': entry, 'isWriter': is_writer})
