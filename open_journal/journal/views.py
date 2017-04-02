@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import JournalForm, JournalEntry
 from django.http import HttpResponse
 
@@ -16,7 +17,9 @@ def journal_write(request):
 			model_instance.save()
 			form = JournalForm()
 			complete = True
-	journal = JournalEntry.objects.all().order_by('-pub_date', 'title')
+	journal = JournalEntry.objects \
+		.filter(Q(writer__exact=request.user) | Q(public__exact=True)) \
+		.order_by('-pub_date', 'title')
 	return render(request, 'journal/journal.html', {'form': form, 'complete': complete, 'journal': journal})
 
 def journal_detail(request, entry_id):

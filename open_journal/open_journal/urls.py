@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from journal.views import journal_write, journal_detail
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
 	url(r'^$', journal_write, name='write'),
@@ -25,4 +27,4 @@ urlpatterns = [
     url('', include('social.apps.django_app.urls', namespace='social')),
     # Url Entries for django administration
     url('', include('django.contrib.auth.urls', namespace='auth')),
-]
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # NOT FOR PRODUCTION

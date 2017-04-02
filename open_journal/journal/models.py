@@ -12,15 +12,17 @@ class JournalEntry(models.Model):
 	pub_date = models.DateTimeField(default=timezone.now)
 	content = models.TextField(blank=False, max_length=3000)
 	writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	public = models.BooleanField(default=False)
 
 class JournalForm(ModelForm):
 
 	class Meta:
 		model = JournalEntry
-		fields = ['title', 'content']
+		fields = ['title', 'content', 'public']
 		labels = {
 			'title': 'Title',
 			'content': 'Content',
+			'public': 'Make public'
 		}
 		widgets = {
 			'content': Textarea(attrs={'placeholder': 'Type your journal entry here!'})
