@@ -4,7 +4,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-
 def journal_write(request):
 	complete = False
 	if request.method == 'GET':

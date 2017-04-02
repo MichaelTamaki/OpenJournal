@@ -4,12 +4,23 @@
 <head lang="en">
     <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{% static 'journal/style.css' %}" />
+	<style>
+		.social-icns { width: 200px; display: block; margin-right: auto; margin-left: auto;}
+	</style>
 </head>
 <body>
 	<header>
 		<h1 class="header-text"><a href="{% url 'write' %}">Open Journal</a></h1>
 	</header>
-	{% block content %}
-	{% endblock %}
+	{% if user and not user.is_anonymous %}
+		<p>Welcome, {{ user.get_full_name }}</p>
+		<a href="{% url 'auth:logout' %}?next={{ request.path }}">Log Out</a>
+		{% block content %}
+		{% endblock %}
+	{% else %}
+		<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+			<img class='social-icns' src='/static/login-with-fb.png'>
+		</a>
+	{% endif %}
 </body>
 </html>
