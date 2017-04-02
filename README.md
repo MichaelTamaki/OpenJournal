@@ -37,10 +37,12 @@ This is an open source project to create a journal web app using Django. Started
 ## Resources used  
 - [Full Stack Python](https://www.fullstackpython.com/)  
 - [Test Driven Development with Python](http://www.obeythetestinggoat.com/)  
-- [Django views automated testing with selenium](https://medium.com/@unary/django-views-automated-testing-with-selenium-d9df95bdc926)
+- [Django views automated testing with selenium](https://medium.com/@unary/django-views-automated-testing-with-selenium-d9df95bdc926)  
+- [Deploying Django to AWS](https://realpython.com/blog/python/deploying-a-django-app-and-postgresql-to-aws-elastic-beanstalk/#using-s3-for-media-storage)
 
 ## Technologies  
 - Django  
 - Postgresql  
 - ~~Selenium~~  
 - Python Social Auth  
+- AWS Elastic Beanstalk
