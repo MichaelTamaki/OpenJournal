@@ -34,6 +34,9 @@ This is an open source project to create a journal web app using Django. Started
 - `./manage.py test`  
 - ~~[Selenium Webdriver](http://www.seleniumhq.org/projects/webdriver/) is used to open up a browser (currently Google Chrome) and test the website's interactions... Please download the [driver](http://www.seleniumhq.org/download/) for Google Chrome~~
 
+## Deployment to AWS
+Instead of making 5000 commits trying to run `eb deploy`, make a new branch. You will have to `git commit` the `secret.py` file... So make sure you do not publish the secret keys file online.
+
 ## Resources used  
 - [Full Stack Python](https://www.fullstackpython.com/)  
 - [Test Driven Development with Python](http://www.obeythetestinggoat.com/)  
