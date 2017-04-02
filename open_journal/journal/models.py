@@ -21,7 +21,7 @@ class JournalForm(ModelForm):
 		fields = ['title', 'content', 'public']
 		labels = {
 			'title': 'Title',
-			'content': 'Content',
+			'content': '',
 			'public': 'Make public'
 		}
 		widgets = {

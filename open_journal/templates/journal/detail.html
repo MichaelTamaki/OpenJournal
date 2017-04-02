@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-	{% if isWriter %}
+	{% if canView %}
 		<h2>{{ entry.title }} <small>{{ entry.pub_date }}</small></h2>
 		<p>{{ entry.content }}</p>
 	{% else %}

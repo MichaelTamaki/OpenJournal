@@ -2,8 +2,9 @@
 
 {% block content %}
 	{% if complete %}
-		<h2 class="success">Journal Entry Successfully submitted!</h2>
+		<p class="success">Journal Entry Successfully submitted!</p>
 	{% endif %}
+	<h2>Write a Journal Entry</h2>
 	<form action="/" method="post">
 	    {% csrf_token %}
 	    {{ form.as_p }}
@@ -13,7 +14,7 @@
 		<h2>Journal Entries</h2>
 		<ol>
 			{% for entry in journal %}
-				<li><a href="{% url 'detail' entry.pk %}">{{ entry.title }}</a> <small>{{ entry.pub_date }}</small> by {{ entry.writer.first_name }}</li>
+				<li><a href="{% url 'detail' entry.pk %}">{{ entry.title }}</a> <small>{{ entry.pub_date }}</small> by {{ entry.writer.username }}</li>
 			{% endfor %}
 		</ol>
 	{% endif %}

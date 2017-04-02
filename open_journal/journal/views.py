@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
+from django.contrib.auth.models import User
 from .models import JournalForm, JournalEntry
 from django.http import HttpResponse
 
@@ -17,12 +18,15 @@ def journal_write(request):
 			model_instance.save()
 			form = JournalForm()
 			complete = True
-	journal = JournalEntry.objects \
-		.filter(Q(writer__exact=request.user) | Q(public__exact=True)) \
-		.order_by('-pub_date', 'title')
+	if not request.user.is_authenticated:
+		journal = None
+	else:
+		journal = JournalEntry.objects \
+			.filter(Q(writer__exact=request.user) | Q(public__exact=True)) \
+			.order_by('-pub_date', 'title')
 	return render(request, 'journal/journal.html', {'form': form, 'complete': complete, 'journal': journal})
 
 def journal_detail(request, entry_id):
 	entry = get_object_or_404(JournalEntry, pk=entry_id)
-	is_writer = entry.writer == request.user
-	return render(request, 'journal/detail.html', {'entry': entry, 'isWriter': is_writer})
+	canView = entry.writer == request.user or entry.public
+	return render(request, 'journal/detail.html', {'entry': entry, 'canView': canView})

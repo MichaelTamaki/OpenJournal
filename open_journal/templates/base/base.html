@@ -3,29 +3,25 @@
 <html>
 <head lang="en">
     <meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{% static 'journal/style.css' %}" />
-	<style>
-		.facebook {
-			background-color: #3b5998;
-			color: white;
-			padding: 10px;
-			text-decoration: none;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'base/base.css' %}" />
 </head>
 <body>
 	<header>
-		<h1 class="header-text"><a href="{% url 'write' %}">Open Journal</a></h1>
+		<h1><a class="header-text" href="{% url 'write' %}">Open Journal</a></h1>
 	</header>
-	{% if user and not user.is_anonymous %}
-		<p>Welcome, {{ user.get_full_name }}</p>
-		<a href="{% url 'auth:logout' %}?next={{ request.path }}">Log Out</a>
-		{% block content %}
-		{% endblock %}
-	{% else %}
-		<a class="facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
-			Log in with Facebook
-		</a>
-	{% endif %}
+	<main>
+		{% if user and not user.is_anonymous %}
+			<div class="account">
+				<p>{{ user.username }}</p>
+				<a href="{% url 'auth:logout' %}?next={{ request.path }}">Log Out</a>
+			</div>
+			{% block content %}
+			{% endblock %}
+		{% else %}
+			<a class="facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+				Log in with Facebook
+			</a>
+		{% endif %}
+	</main>
 </body>
 </html>
