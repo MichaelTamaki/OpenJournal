@@ -2,3 +2,7 @@ env/
 *.py[cod]
 __pycache__/
 open_journal/secret.py
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
