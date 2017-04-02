@@ -1,5 +1,5 @@
 # OpenJournal  
-This is an open source project to create a journal web app using Django. Started at LAHacks 3/31/17 ~~with an emphasis on test-driven development~~.
+This is an open source project to create a journal web app using Django. User accounts are tied to their Facebook profiles and can only view journal entries that are their's or public entires by other people. Started at LAHacks 3/31/17 ~~with an emphasis on test-driven development~~. [Check it out](openjournal.us-west-1.elasticbeanstalk.com)!
 
 ## Setting up the project locally  
 - Set up a virtualenv! `virtualenv env` in the root folder (same level as `.gitignore`)  
