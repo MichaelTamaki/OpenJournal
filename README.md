@@ -26,7 +26,9 @@ This is an open source project to create a journal web app using Django. User ac
 
 ## Running server  
 - `python manage.py runserver`  
-- Navigate to `www.openjournal.development.com:8000`
+- Navigate to `www.openjournal.development.com:8000`  
+- Set `DEBUG = True`  
+- Facebook might give you some trouble... At some point I'll find a work-around, but for now they only allow one domain name to be used
 
 ## Running tests  
 - If getting error `Got an error creating the test database: permission denied to create database`, in `psql`: `ALTER USER name CREATEDB;`  
