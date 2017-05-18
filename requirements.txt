@@ -2,4 +2,6 @@ Django==1.10.6
 psycopg2==2.7.1
 python-social-auth==0.2.21
 social-auth-app-django==1.1.0
-awsebcli
+gunicorn==19.6.0
+dj-database-url==0.4.2
+whitenoise==3.3.0
