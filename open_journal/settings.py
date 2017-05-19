@@ -31,7 +31,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'www.openjournal.development.com',
-    'http://openjournal.us-west-1.elasticbeanstalk.com',
+    'https://warm-reaches-94999.herokuapp.com/',
     '*',
 ]
 
