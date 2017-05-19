@@ -27,7 +27,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = secret.SOCIAL_AUTH_FACEBOOK_SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set to True when not deployed
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'www.openjournal.development.com',

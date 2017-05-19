@@ -25,10 +25,10 @@ This is an open source project to create a journal web app using Django. User ac
 - Username and password are defined in `DATABASES` in `settings.py` (replace with name)  
 
 ## Running server  
+- Set `DEBUG = True`  
 - `python manage.py runserver`  
 - Navigate to `www.openjournal.development.com:8000`  
-- Set `DEBUG = True`  
-- Facebook might give you some trouble... At some point I'll find a work-around, but for now they only allow one domain name to be used
+- For now, Facebook authentification only works on the live website... Sorry!  
 
 ## Running tests  
 - If getting error `Got an error creating the test database: permission denied to create database`, in `psql`: `ALTER USER name CREATEDB;`  
@@ -36,8 +36,16 @@ This is an open source project to create a journal web app using Django. User ac
 - `./manage.py test`  
 - ~~[Selenium Webdriver](http://www.seleniumhq.org/projects/webdriver/) is used to open up a browser (currently Google Chrome) and test the website's interactions... Please download the [driver](http://www.seleniumhq.org/download/) for Google Chrome~~
 
-## Deployment to AWS
-Instead of making 5000 commits trying to run `eb deploy`, make a new branch. You will have to `git commit` the `secret.py` file... So make sure you do not publish the secret keys file online.
+~~## Deployment to AWS
+Instead of making 5000 commits trying to run `eb deploy`, make a new branch. You will have to `git commit` the `secret.py` file... So make sure you do not publish the secret keys file online.~~
+
+## Deployment to Heroku
+- Add the secret key to the commit, but make sure not to push to Github, only Heroku! (until I find a better way to do it)  
+- `git add -f secret.py`  
+- `git commit -m "secret!"`  
+- `git push heroku master`  
+- `git reset --hard HEAD~1`  
+- To play with the database: `heroku run python manage.py shell`  
 
 ## Resources used  
 - [Full Stack Python](https://www.fullstackpython.com/)  
