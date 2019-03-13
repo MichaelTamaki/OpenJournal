@@ -1,3 +1,5 @@
+## This repository is archived, and the Heroku website has been deleted.
+
 # OpenJournal  
 This is an open source project to create a journal web app using Django. User accounts are tied to their Facebook profiles and can only view journal entries that are their's or public entires by other people. Started at LAHacks 3/31/17. Originally deployed to AWS Elastic Beanstalk, but later moved to Heroku.
 
